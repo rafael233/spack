@@ -257,6 +257,9 @@ class Mfem(Package):
             'MFEM_USE_OPENMP=%s' % yes_no('+openmp'),
             'MFEM_USE_CONDUIT=%s' % yes_no('+conduit')]
 
+        if '+petsc' in spec:
+            spec.compiler_flags['cxxflags'].append('-DPETSC_SKIP_COMPLEX')
+
         cxxflags = spec.compiler_flags['cxxflags']
         if cxxflags:
             # The cxxflags are set by the spack c++ compiler wrapper. We also
